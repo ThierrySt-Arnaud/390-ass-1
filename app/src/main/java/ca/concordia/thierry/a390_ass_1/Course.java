@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by Tawfiq on 1/13/2017. */
 public class Course {
-    private static int courseID = 0;    //static ID increments with every new course created
+    private static int courseID = 1;    //static ID increments with every new course created
 
     private String courseTitle;         //cou
     private ArrayList<Assignment> assignments;

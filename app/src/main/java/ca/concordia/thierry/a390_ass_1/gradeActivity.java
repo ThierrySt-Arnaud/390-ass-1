@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static ca.concordia.thierry.a390_ass_1.Course.generateRandomCourse;
 
@@ -21,6 +22,7 @@ public class gradeActivity extends AppCompatActivity {
 
     private ArrayList<Course> courseList;
     private ExpandableListView gradeList;
+    private Random rng = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,10 @@ public class gradeActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+
+        int numberOfCourse = rng.nextInt(5) + 1;
         courseList = new ArrayList<Course>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < numberOfCourse; i++) {
             courseList.add(Course.generateRandomCourse());
         }
 
@@ -101,14 +105,26 @@ class CourseListAdapter implements ExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        Course courseInfo = (Course) getGroup(groupPosition);
+        Course course = (Course) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.group_items, null);
         }
+        String courseInfo = null;
+        ArrayList<Assignment> assignments = course.getAssignments();
+        if (assignments.isEmpty())
+            courseInfo = course.getCourseTitle().trim();
+        else{
+            int avg = 0;
+            for (Assignment assignment: assignments ) {
+                avg += assignment.getAssignmentGrade();
+            }
+            avg /= assignments.size();
+            courseInfo = course.getCourseTitle().trim() + "     " + avg;
+        }
 
         TextView heading = convertView.findViewById(R.id.heading);
-        heading.setText(courseInfo.getCourseTitle().trim());
+        heading.setText(courseInfo);
         return convertView;
     }
 
