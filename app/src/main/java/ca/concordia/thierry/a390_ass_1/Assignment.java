@@ -1,3 +1,5 @@
+package ca.concordia.thierry.a390_ass_1;
+
 import java.util.Random;
 /**
  * Created by Tawfiq on 1/13/2017. */
@@ -14,10 +16,10 @@ public class Assignment {
         assID++;
     }
 
-    //returns an Assignment instance with random values
+    //returns an ca.concordia.thierry.a390_ass_1.Assignment instance with random values
     static public Assignment generateRandomAssignment() {
         Random rnd = new Random();
-        String tempTitle = "Assignment " + assID; int tempGrade = rnd.nextInt(100) + 1;
+        String tempTitle = "ca.concordia.thierry.a390_ass_1.Assignment " + assID; int tempGrade = rnd.nextInt(100) + 1;
         return new Assignment(tempTitle, tempGrade);
     }
 
