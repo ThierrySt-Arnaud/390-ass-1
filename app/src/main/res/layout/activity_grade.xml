@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="ca.concordia.thierry.a390_ass_1.gradeActivity">
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/gradeList"
         android:layout_width="344dp"
         android:layout_height="495dp"

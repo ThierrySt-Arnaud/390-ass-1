@@ -16,13 +16,13 @@ public class Course {
         courseID++;
     }
 
-    //returns a ca.concordia.thierry.a390_ass_1.Course instant with random assignment values
+    //returns a Course instant with random assignment values
     static public Course generateRandomCourse() {
         Random rnd = new Random();
         int assignmentNo = rnd.nextInt(5);
         ArrayList<Assignment> tempAssns = new ArrayList<Assignment>();
         for(int i=0; i < assignmentNo; i++) tempAssns.add(Assignment.generateRandomAssignment());
-        return new Course("ca.concordia.thierry.a390_ass_1.Course " + courseID, tempAssns);
+        return new Course("Course " + courseID, tempAssns);
     }
 
     //****get methods*****//
